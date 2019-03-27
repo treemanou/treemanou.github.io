@@ -737,8 +737,6 @@ Error message and password prompt
 
 <li>MySQL_安裝</li>
 
-<li>MySQL_忘記密碼</li>
-
 <li>MySQL_系統表</li>
 
 <li>MySQL_使用者權限設定</li>
@@ -752,6 +750,10 @@ Error message and password prompt
 <li>MySQL_效能調教</li>
 
 <li>MySQL_基礎指令</li>
+
+<li>MySQL_密碼_忘記密碼</li>
+
+<li>MySQL_密碼_修改密碼</li>
 
 <li>MySQL_備分與還原</li>
 
@@ -13215,8 +13217,8 @@ Error message and password prompt
 <div created="20180728070923094" creator="treeman" modified="20190322054016074" modifier="treeman" title="$:/state/toc/Contents/技術相關-Mac-209360082">
 <pre>close</pre>
 </div>
-<div created="20180718061245746" creator="treeman" modified="20190305032706382" modifier="treeman" title="$:/state/toc/Contents/技術相關-MySQL-209360082">
-<pre>close</pre>
+<div created="20180718061245746" creator="treeman" modified="20190327084425222" modifier="treeman" title="$:/state/toc/Contents/技術相關-MySQL-209360082">
+<pre>open</pre>
 </div>
 <div created="20180727021256672" creator="treeman" modified="20190307071056474" modifier="treeman" title="$:/state/toc/Contents/技術相關-Other其他技術-209360082">
 <pre>close</pre>
@@ -13266,7 +13268,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="關於我" title="$:/StoryList">
+<div list="MySQL_密碼_忘記密碼 MySQL_密碼_修改密碼 MySQL_使用者權限設定 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -21262,50 +21264,6 @@ tftp 預設的文件目錄為：
 *https://www.opencli.com/linux/centos-7-install-percona-server
 </pre>
 </div>
-<div created="20180625164425959" creator="treeman" modified="20181206065702240" modifier="treeman" tags="MySQL" title="MySQL_忘記密碼">
-<pre>1.修改設定檔
-
-```
-#/etc/my.cnf 加入
-skip_grant_tables
-```
-```
-   [mysqld] 
-    skip-grant-tables 
-```
-2.服務重啟候登入
-
-```
-[root@localhost ~]# systemctl restart mysqld
-[root@localhost ~]# mysql
-
-mysql&gt;
-```
-3.更改密碼
-
-```
-mysql&gt; use mysql;
-mysql&gt;  update user set Password=password('密码') where  user='root' ;
-Query OK, 3 rows affected (0.00 sec)
-Rows matched: 3  Changed: 3  Warnings: 0
-
-mysql&gt; exit;
-Bye
-
-```
-4.修改設定檔
-
-```
-#/etc/my.cnf 移除
-skip_grant_tables
-```
-5.服務重啟候登入
-
----
-
-*單純修改密碼後可執行``flush privileges;``
-*刷新~MySQL的系統權限相關表­(不用重啟服務)</pre>
-</div>
 <div created="20180625165744611" creator="treeman" modified="20180626174135408" modifier="treeman" tags="MySQL" title="MySQL_系統表">
 <pre>*https://dev.mysql.com/doc/refman/5.6/en/information-schema.html
 
@@ -21717,6 +21675,75 @@ $db-&gt;query($charset);
 
 *CUDR
 *http://note.drx.tw/2012/12/mysql-syntax.html</pre>
+</div>
+<div created="20180625164425959" creator="treeman" modified="20190327090241229" modifier="treeman" tags="MySQL" title="MySQL_密碼_忘記密碼">
+<pre>1.修改設定檔
+
+```
+#/etc/my.cnf 加入
+skip_grant_tables
+```
+```
+   [mysqld] 
+    skip-grant-tables 
+```
+2.服務重啟候登入
+
+```
+[root@localhost ~]# systemctl restart mysqld
+[root@localhost ~]# mysql
+
+mysql&gt;
+```
+3.更改密碼
+
+```
+mysql&gt; use mysql;
+mysql&gt;  update user set Password=password('密码') where  user='root' ;
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql&gt; exit;
+Bye
+
+```
+4.修改設定檔
+
+```
+#/etc/my.cnf 移除
+skip_grant_tables
+```
+5.服務重啟候登入
+
+---
+
+*單純修改密碼後可執行``flush privileges;``
+*刷新~MySQL的系統權限相關表­(不用重啟服務)</pre>
+</div>
+<div created="20190327085547377" creator="treeman" modified="20190327090306780" modifier="treeman" tags="MySQL" title="MySQL_密碼_修改密碼">
+<pre>*先查詢帳號
+```sql
+use mysql;
+select user,host from user;
+```
+```
+mysql&gt; select user,host from user;
++---------------+-----------+
+| user          | host      |
++---------------+-----------+
+| mysql.session | localhost |
+| mysql.sys     | localhost |
+| root          | localhost |
++---------------+-----------+
+3 rows in set (0.00 sec)
+```
+*修改密碼
+```sql
+set password for &lt;使用者&gt;@&lt;host&gt; = &lt;密碼&gt;
+```
+```sql
+set password for 'root'@'localhost' = '1q2w#E$R';
+```</pre>
 </div>
 <div created="20180419041642663" creator="treeman" modified="20180803015607300" modifier="treeman" tags="MySQL" title="MySQL_備分與還原">
 <pre>https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html
