@@ -801,6 +801,8 @@ Error message and password prompt
 
 <li>MySQL_相關設定</li>
 
+<li>MySQL_相關資源</li>
+
 <li>MySQL_效能調教</li>
 
 <li>MySQL_基礎指令</li>
@@ -13220,8 +13222,8 @@ Error message and password prompt
 <div created="20180714192602194" creator="treeman" modified="20180714192602194" modifier="treeman" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20180714192603913" creator="treeman" modified="20190403063210172" modifier="treeman" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20180714192603913" creator="treeman" modified="20190403064017589" modifier="treeman" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20180714183634678" creator="treeman" modified="20180714183635241" modifier="treeman" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
@@ -13262,8 +13264,8 @@ Error message and password prompt
 <div created="20190330025412736" creator="treeman" modified="20190330025427325" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-English-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330025425202" creator="treeman" modified="20190402065209492" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
-<pre>open</pre>
+<div created="20190330025425202" creator="treeman" modified="20190403064957958" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
+<pre>close</pre>
 </div>
 <div created="20190330025422317" creator="treeman" modified="20190402024745573" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
 <pre>close</pre>
@@ -13274,16 +13276,16 @@ Error message and password prompt
 <div created="20190402064718017" creator="treeman" modified="20190403062519686" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Linux-209360082">
 <pre>close</pre>
 </div>
-<div created="20190402023337413" creator="treeman" modified="20190402040115596" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Mac-209360082">
-<pre>open</pre>
+<div created="20190402023337413" creator="treeman" modified="20190403064956550" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Mac-209360082">
+<pre>close</pre>
 </div>
-<div created="20190330025446443" creator="treeman" modified="20190402023338796" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-MySQL-209360082">
-<pre>open</pre>
+<div created="20190330025446443" creator="treeman" modified="20190403064955109" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-MySQL-209360082">
+<pre>close</pre>
 </div>
 <div created="20190330025429135" creator="treeman" modified="20190330025452301" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Other其他技術-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330033506508" creator="treeman" modified="20190330033506508" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
+<div created="20190330033506508" creator="treeman" modified="20190403065001939" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
 <pre>open</pre>
 </div>
 <div created="20190402064721213" creator="treeman" modified="20190402065208337" modifier="treeman" title="$:/state/toc/Contents/01_技術相關/Linux-LINUX_指令總覽-209360082">
@@ -13373,7 +13375,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="TiddlyWiki_教學 TiddlyWiki_img MySQL_ROW_NUMBER 關於我" title="$:/StoryList">
+<div list="MySQL_相關資源 MySQL MySQL_效能調教 MySQL_備分與還原 MySQL_密碼_修改密碼 TiddlyWiki_教學 TiddlyWiki_img MySQL_ROW_NUMBER 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -21885,6 +21887,13 @@ log-queries-not-using-indexes
 
 </pre>
 </div>
+<div created="20190403065133600" creator="treeman" modified="20190403065503454" modifier="treeman" tags="MySQL" title="MySQL_相關資源">
+<pre>
+*官方文檔
+*https://dev.mysql.com/doc/
+----
+*http://www.mysqltutorial.org/</pre>
+</div>
 <div created="20180626070423050" creator="treeman" modified="20180627101630288" modifier="treeman" tags="MySQL" title="MySQL_效能調教">
 <pre>*查看現在執行狀況
 ```sql
@@ -22079,7 +22088,7 @@ skip_grant_tables
 *單純修改密碼後可執行``flush privileges;``
 *刷新~MySQL的系統權限相關表­(不用重啟服務)</pre>
 </div>
-<div created="20190327085547377" creator="treeman" modified="20190327090306780" modifier="treeman" tags="MySQL" title="MySQL_密碼_修改密碼">
+<div created="20190327085547377" creator="treeman" modified="20190403064918318" modifier="treeman" tags="MySQL" title="MySQL_密碼_修改密碼">
 <pre>*先查詢帳號
 ```sql
 use mysql;
@@ -22092,17 +22101,52 @@ mysql&gt; select user,host from user;
 +---------------+-----------+
 | mysql.session | localhost |
 | mysql.sys     | localhost |
-| root          | localhost |
+| dbadmin       | localhost |
 +---------------+-----------+
 3 rows in set (0.00 sec)
 ```
-*修改密碼
+!!''*修改密碼''
+
+----
+*【方法一】
 ```sql
-set password for &lt;使用者&gt;@&lt;host&gt; = &lt;密碼&gt;
+USE mysql;
+ 
+UPDATE user 
+SET password = PASSWORD('dolphin')
+WHERE user = 'dbadmin' AND 
+      host = 'localhost';
+ 
+FLUSH PRIVILEGES;
 ```
+*~MySQL 5.7.6+
 ```sql
-set password for 'root'@'localhost' = '1q2w#E$R';
-```</pre>
+USE mysql;
+ 
+UPDATE user 
+SET authentication_string = PASSWORD('dolphin')
+WHERE user = 'dbadmin' AND 
+      host = 'localhost';
+ 
+FLUSH PRIVILEGES;
+```
+----
+*【方法二】
+```sql
+	
+SET PASSWORD FOR 'dbadmin'@'localhost' = PASSWORD('bigshark');
+```
+*~MySQL 5.7.6+
+```sql
+SET PASSWORD FOR 'dbadmin'@'localhost' = bigshark;
+```
+----
+*【方法三】
+```sql
+ALTER USER dbadmin@localhost IDENTIFIED BY 'littlewhale';
+```
+*參考網站
+*http://www.mysqltutorial.org/mysql-changing-password.aspx</pre>
 </div>
 <div created="20190329084449765" creator="treeman" modified="20190329084931988" modifier="treeman" tags="MySQL" title="MySQL_密碼_密碼原則">
 <pre>*密碼強度不足-處理方法
