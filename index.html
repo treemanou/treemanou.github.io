@@ -369,6 +369,8 @@ Error message and password prompt
 
 <li>Android_AsyncTask</li>
 
+<li>Android_BroadcastReceiver</li>
+
 <li>Android_Firebase</li>
 
 <li>Android_Fragement</li>
@@ -376,6 +378,8 @@ Error message and password prompt
 <li>Android_Json</li>
 
 <li>Android_okhttp</li>
+
+<li>Android_Service</li>
 
 <li>Android_SQLite</li>
 
@@ -13300,11 +13304,11 @@ Error message and password prompt
 <div created="20190330025412736" creator="treeman" modified="20190330025427325" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-English-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330025425202" creator="treeman" modified="20190410061402393" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
-<pre>close</pre>
+<div created="20190330025425202" creator="treeman" modified="20190410064445964" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
+<pre>open</pre>
 </div>
-<div created="20190330025422317" creator="treeman" modified="20190410061318609" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
-<pre>close</pre>
+<div created="20190330025422317" creator="treeman" modified="20190410065304420" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
+<pre>open</pre>
 </div>
 <div created="20190330025504091" creator="treeman" modified="20190410061359780" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-JS-209360082">
 <pre>close</pre>
@@ -13420,7 +13424,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="Android_Fragement Android 如果... DesignPattern 物件導向設計 RESTful_API LINUX_deny_ip.sh Android_Json AndroidStudio 關於我" title="$:/StoryList">
+<div list="Android_BroadcastReceiver AndroidStudio Android_Service" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14181,6 +14185,41 @@ public  class TestTask extends AsyncTask&lt;String,Void,String&gt;{
     }
 ```</pre>
 </div>
+<div created="20190410083914829" creator="treeman" modified="20190410084433113" modifier="treeman" tags="Android" title="Android_BroadcastReceiver">
+<pre>*在要觸發的方法發送廣播(Broadcast)
+```java
+Intent done = new Intent();
+done.setAction(ACTION_HELLO_DONE);
+sendBroadcast(done);
+```
+
+*設定receiver
+```java
+BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, &quot;onReceive: Hello&quot;+ intent.getStringExtra(&quot;Name&quot;));
+        }
+    };
+```
+*onStart() 時註冊，確定要傾聽的action
+```java
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(HelloService.ACTION_HELLO_DONE);
+        registerReceiver(receiver,filter);
+    }
+```
+*onStop() 時取消註冊
+```java
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
+```</pre>
+</div>
 <div created="20190330020648817" creator="treeman" modified="20190330020905672" modifier="treeman" tags="Android" title="Android_Firebase">
 <pre>```java
 FirebaseDatabase
@@ -14327,6 +14366,61 @@ implementation 'com.squareup.okhttp3:okhttp:3.11.0'
         });
 ```</pre>
 </div>
+<div created="20190410065618869" creator="treeman" modified="20190410070558789" modifier="treeman" tags="Android" title="Android_Service">
+<pre>
+*~AndroidManiFest.xml
+```
+ &lt;service android:name=&quot;.HelloService&quot;/&gt;
+```
+
+*啟動
+```java
+    @Override
+protected void onCreate(Bundle savedInstanceState) {
+helloService = new Intent(this, HelloService.class);
+        startService(helloService);
+
+}
+```
+*銷毀
+```java
+@Override
+    protected void onStop() {
+        super.onStop();
+        stopService(helloService);
+    }
+
+```
+*Service class
+```java
+public class HelloService extends Service {
+    private static final String TAG = HelloService.class.getSimpleName();
+
+    @Override
+    public void onCreate() {
+        Log.d(TAG, &quot;onCreate: &quot;);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, &quot;onStartCommand: &quot;);
+
+        return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, &quot;onDestroy: &quot;);
+        super.onDestroy();
+    }
+    
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+}
+```</pre>
+</div>
 <div created="20190407042250758" creator="treeman" modified="20190407042950042" modifier="treeman" tags="Android" title="Android_SQLite" type="">
 <pre>*查詢資料
 ```
@@ -14357,7 +14451,7 @@ sqlite&gt; select * from expense;
 sqlite&gt; .exit
 ```</pre>
 </div>
-<div created="20190202034317046" creator="treeman" modified="20190410061235337" modifier="treeman" tags="IDE" title="AndroidStudio" type="text/vnd.tiddlywiki">
+<div created="20190202034317046" creator="treeman" modified="20190410082134418" modifier="treeman" tags="IDE" title="AndroidStudio" type="text/vnd.tiddlywiki">
 <pre>
 |cmd+/|註解|
 |cmd+shift+/|多行註解|
@@ -14392,7 +14486,12 @@ Log.d(TAG, &quot;method: &quot;);
 public static &lt;class&gt; getInstance() {
         return ;
     }
-```</pre>
+```
+&gt;psfs
+```
+public static final String 
+```
+</pre>
 </div>
 <div created="20180803014540249" creator="treeman" modified="20180803014722683" modifier="treeman" tags="DevOps" title="Ansible">
 <pre>*現代 IT 人一定要知道的 Ansible 自動化組態技巧
