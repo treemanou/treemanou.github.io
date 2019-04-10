@@ -353,7 +353,13 @@ Error message and password prompt
 
 <li>Android_ADB</li>
 
+<li>Android_AsyncTask</li>
+
 <li>Android_Firebase</li>
+
+<li>Android_okhttp</li>
+
+<li>Android_SQLite</li>
 
 <li>AndroidStudio</li>
 
@@ -13258,8 +13264,8 @@ Error message and password prompt
 <div created="20180714183655891" creator="treeman" modified="20190330025206897" modifier="treeman" title="$:/state/toc/Contents-技術相關-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330032209622" creator="treeman" modified="20190402024801182" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Android-209360082">
-<pre>close</pre>
+<div created="20190330032209622" creator="treeman" modified="20190407042241143" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Android-209360082">
+<pre>open</pre>
 </div>
 <div created="20190330025412736" creator="treeman" modified="20190330025427325" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-English-209360082">
 <pre>close</pre>
@@ -13267,8 +13273,8 @@ Error message and password prompt
 <div created="20190330025425202" creator="treeman" modified="20190403064957958" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330025422317" creator="treeman" modified="20190402024745573" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
-<pre>close</pre>
+<div created="20190330025422317" creator="treeman" modified="20190409145833296" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
+<pre>open</pre>
 </div>
 <div created="20190330025504091" creator="treeman" modified="20190330025516539" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-JS-209360082">
 <pre>close</pre>
@@ -13285,8 +13291,8 @@ Error message and password prompt
 <div created="20190330025429135" creator="treeman" modified="20190330025452301" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Other其他技術-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330033506508" creator="treeman" modified="20190403065001939" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
-<pre>open</pre>
+<div created="20190330033506508" creator="treeman" modified="20190407042238602" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
+<pre>close</pre>
 </div>
 <div created="20190402064721213" creator="treeman" modified="20190402065208337" modifier="treeman" title="$:/state/toc/Contents/01_技術相關/Linux-LINUX_指令總覽-209360082">
 <pre>close</pre>
@@ -13375,7 +13381,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="MySQL_相關資源 MySQL MySQL_效能調教 MySQL_備分與還原 MySQL_密碼_修改密碼 TiddlyWiki_教學 TiddlyWiki_img MySQL_ROW_NUMBER 關於我" title="$:/StoryList">
+<div list="Android_okhttp Android_AsyncTask AndroidStudio 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14075,6 +14081,67 @@ adb shell
 /data/data/com.treeman.atm/shared_prefs
 ```</pre>
 </div>
+<div created="20190409152035159" creator="treeman" modified="20190409155839236" modifier="treeman" tags="Android" title="Android_AsyncTask">
+<pre>*使用
+```java
+ new TestTask().execute(&quot;http://atm201605.appspot.com/h&quot;);
+```
+*繼承類別
+```java
+public  class TestTask extends AsyncTask&lt;String,Void,String&gt;{
+        //執行前
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG, &quot;onPreExecute: &quot;);
+            Toast.makeText(LoginActivity.this,&quot;onPreExecute&quot;,Toast.LENGTH_LONG).show();
+        }
+        //執行後
+         @Override
+        protected String doInBackground(String... strings) {
+            StringBuilder sb = new StringBuilder();
+            try {
+                URL url = new URL(strings[0]);
+                InputStream is = url.openStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                String line = in.readLine();
+                while (line != null) {
+                    sb.append(line);
+                    line = in.readLine();
+                }
+                Log.d(TAG, &quot;doInBackground: &quot; + sb.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return sb.toString();
+        }
+
+        //執行動作
+        @Override
+        protected String doInBackground(String... strings) {
+            StringBuilder sb = new StringBuilder();
+            try {
+                URL url = new URL(strings[0]);
+                InputStream is = url.openStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                String line = in.readLine();
+                while (line != null) {
+                    sb.append(line);
+                    line = in.readLine();
+                }
+                Log.d(TAG, &quot;doInBackground: &quot; + sb.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return sb.toString();
+        }
+    }
+```</pre>
+</div>
 <div created="20190330020648817" creator="treeman" modified="20190330020905672" modifier="treeman" tags="Android" title="Android_Firebase">
 <pre>```java
 FirebaseDatabase
@@ -14104,6 +14171,65 @@ FirebaseDatabase
 
                     }
                 });
+```</pre>
+</div>
+<div created="20190409155957496" creator="treeman" modified="20190409162308906" modifier="treeman" tags="Android" title="Android_okhttp">
+<pre>*https://square.github.io/okhttp/
+
+''GRADLE''
+
+```
+implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+```
+
+```java
+ OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(&quot;http://atm201605.appspot.com/h&quot;)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                Log.d(TAG, &quot;onResponse: &quot;+ response.body().string());
+            }
+        });
+```</pre>
+</div>
+<div created="20190407042250758" creator="treeman" modified="20190407042950042" modifier="treeman" tags="Android" title="Android_SQLite" type="">
+<pre>*查詢資料
+```
+#adb shell
+generic_x86:/ $ su
+generic_x86:/ # cd /data/data/com.treeman.atm/databases
+generic_x86:/data/data/com.treeman.atm/databases # ls
+atm atm-shm atm-wal
+generic_x86:/data/data/{package name}/databases #
+```
+*sqlite {資料庫名稱}
+```
+# sqlite3 atm
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter &quot;.help&quot; for usage hints.
+sqlite&gt;
+```
+|.tables|顯示所有table|
+|{sql語法}``;``|sql語法結尾要加``;``|
+|.exit|離開|
+```
+sqlite&gt; .tables
+android_metadata  expense
+sqlite&gt; select * from expense;
+1|2019-04-10|breakfast|100
+2|2019-04-10|lunch|150
+3|2019-04-10|dinner|300
+sqlite&gt; .exit
 ```</pre>
 </div>
 <div created="20190202034317046" creator="treeman" modified="20190331160623704" modifier="treeman" tags="IDE" title="AndroidStudio" type="text/vnd.tiddlywiki">
@@ -21888,8 +22014,7 @@ log-queries-not-using-indexes
 </pre>
 </div>
 <div created="20190403065133600" creator="treeman" modified="20190403065503454" modifier="treeman" tags="MySQL" title="MySQL_相關資源">
-<pre>
-*官方文檔
+<pre>*官方文檔
 *https://dev.mysql.com/doc/
 ----
 *http://www.mysqltutorial.org/</pre>
