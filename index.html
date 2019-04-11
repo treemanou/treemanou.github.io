@@ -375,6 +375,8 @@ Error message and password prompt
 
 <li>Android_Fragement</li>
 
+<li>Android_Gradle</li>
+
 <li>Android_Json</li>
 
 <li>Android_okhttp</li>
@@ -13424,7 +13426,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="Android_BroadcastReceiver AndroidStudio Android_Service" title="$:/StoryList">
+<div list="Android_Gradle" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14311,6 +14313,19 @@ onDetach
 ```
 </pre>
 </div>
+<div created="20190411020839000" creator="treeman" modified="20190411021021402" modifier="treeman" tags="Android" title="Android_Gradle">
+<pre>
+查詢各最新版本版本版號
+
+*Google map
+&gt;https://developers.google.com/android/guides/setup
+
+*Google play service plugin
+&gt;https://developers.google.com/android/guides/google-services-plugin
+
+*Firebase
+&gt;https://firebase.google.com/docs/android/setup</pre>
+</div>
 <div created="20190410054635508" creator="treeman" modified="20190410054907556" modifier="treeman" tags="Android" title="Android_Json">
 <pre>*Json
 ```java
@@ -14366,7 +14381,7 @@ implementation 'com.squareup.okhttp3:okhttp:3.11.0'
         });
 ```</pre>
 </div>
-<div created="20190410065618869" creator="treeman" modified="20190410070558789" modifier="treeman" tags="Android" title="Android_Service">
+<div created="20190410065618869" creator="treeman" modified="20190410085402503" modifier="treeman" tags="Android" title="Android_Service" type="">
 <pre>
 *~AndroidManiFest.xml
 ```
@@ -14419,6 +14434,45 @@ public class HelloService extends Service {
         return null;
     }
 }
+```
+----
+*~IntentService
+&gt;與service 差異
+&gt;*要實作建構子public ~HelloService() 
+&gt;*要實作方法protected void ``onHandleIntent``
+&gt;*會自行銷毀，不用在``onStop()``裡銷毀
+&gt;*接回傳值要使用[[Android_BroadcastReceiver]]
+```java
+public class HelloService extends IntentService {
+    private static final String TAG = HelloService.class.getSimpleName();
+
+    public HelloService() {
+        super(&quot;HelloService&quot;);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, &quot;onCreate: &quot;);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, &quot;onDestroy: &quot;);
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    protected void onHandleIntent(@Nullable Intent intent) {
+        Log.d(TAG, &quot;onHandleIntent: &quot;+intent.getStringExtra(&quot;Name&quot;));
+     }
+}
+
 ```</pre>
 </div>
 <div created="20190407042250758" creator="treeman" modified="20190407042950042" modifier="treeman" tags="Android" title="Android_SQLite" type="">
@@ -14451,8 +14505,8 @@ sqlite&gt; select * from expense;
 sqlite&gt; .exit
 ```</pre>
 </div>
-<div created="20190202034317046" creator="treeman" modified="20190410082134418" modifier="treeman" tags="IDE" title="AndroidStudio" type="text/vnd.tiddlywiki">
-<pre>
+<div created="20190202034317046" creator="treeman" modified="20190410093911297" modifier="treeman" tags="IDE" title="AndroidStudio" type="text/vnd.tiddlywiki">
+<pre>*http://android-filght-diary.blogspot.com/2017/01/android-studio-30.html
 |cmd+/|註解|
 |cmd+shift+/|多行註解|
 |cmd+E|最近打開的檔案|
