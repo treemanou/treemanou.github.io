@@ -461,8 +461,6 @@ Error message and password prompt
 
 <li>Draft of '網路文章寫作小秘訣'</li>
 
-<li>Draft of 'DesignPattern'</li>
-
 <li>Draft of 'facebook粉絲團經營'</li>
 
 <li>Draft of 'Git_remote'</li>
@@ -13304,8 +13302,8 @@ Error message and password prompt
 <div created="20180714183655891" creator="treeman" modified="20190330025206897" modifier="treeman" title="$:/state/toc/Contents-技術相關-209360082">
 <pre>close</pre>
 </div>
-<div created="20190410061303424" creator="treeman" modified="20190415015507670" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-程式設計相關-209360082">
-<pre>open</pre>
+<div created="20190410061303424" creator="treeman" modified="20190415022241748" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-程式設計相關-209360082">
+<pre>close</pre>
 </div>
 <div created="20190410061259870" creator="treeman" modified="20190410061302727" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-資安相關-209360082">
 <pre>close</pre>
@@ -13349,8 +13347,8 @@ Error message and password prompt
 <div created="20190410061426610" creator="treeman" modified="20190411135316104" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Python-209360082">
 <pre>close</pre>
 </div>
-<div created="20190411132643436" creator="treeman" modified="20190411135317111" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Swift-209360082">
-<pre>close</pre>
+<div created="20190411132643436" creator="treeman" modified="20190415022243417" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Swift-209360082">
+<pre>open</pre>
 </div>
 <div created="20190330033506508" creator="treeman" modified="20190407042238602" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
 <pre>close</pre>
@@ -13445,7 +13443,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="Swift_willSet_didSet [[Draft of 'DesignPattern']] [[Delegation pattern]] Swift_delegate 關於我" title="$:/StoryList">
+<div list="Swift_willSet_didSet DesignPattern [[Delegation pattern]] Swift_delegate 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -15591,7 +15589,7 @@ git fetch all
 <pre>
 *https://carsonwah.github.io/delegation-pattern.html</pre>
 </div>
-<div created="20190221155442975" creator="treeman" modified="20190221160116871" modifier="treeman" tags="物件導向" title="DesignPattern">
+<div created="20190221155442975" creator="treeman" modified="20190415022132620" modifier="treeman" tags="物件導向" title="DesignPattern">
 <pre>#簡單工廠模式 - Simple Factory
 #工廠方法 - Factory Method 
 #樣板方法模式- Template Method
@@ -15601,6 +15599,7 @@ git fetch all
 #策略模式 - Strategy
 #中介者模式 - Mediator Pattern
 #轉接器模式 - Adapter
+#代理模式(委託模式) - [[Delegation pattern]]
 
 https://www.kancloud.cn/digest/xing-designpattern/143722
 </pre>
@@ -15660,21 +15659,6 @@ https://www.kancloud.cn/digest/xing-designpattern/143722
 22.時間期限＋承諾效果
 23.寫下五十個粉絲必須跟隨你的理由
 24.導購文不要太多(10%上限)</pre>
-</div>
-<div created="20190221155442975" creator="treeman" draft.of="DesignPattern" draft.title="DesignPattern" modified="20190415020734967" modifier="treeman" tags="物件導向" title="Draft of 'DesignPattern'">
-<pre>#簡單工廠模式 - Simple Factory
-#工廠方法 - Factory Method 
-#樣板方法模式- Template Method
-#觀察者模式- Observer
-#建造者模式 - Builder 
-#外觀模式 - Facade
-#策略模式 - Strategy
-#中介者模式 - Mediator Pattern
-#轉接器模式 - Adapter
-#代理模式(委託模式) - [[Delegation pattern]]
-
-https://www.kancloud.cn/digest/xing-designpattern/143722
-</pre>
 </div>
 <div created="20170520053705157" creator="treeman" draft.of="facebook粉絲團經營" draft.title="facebook粉絲團經營" list="" modified="20190330025319656" modifier="treeman" tags="02_行銷寫作" title="Draft of 'facebook粉絲團經營'">
 <pre>[[社群經營寫作十大錯誤]]
@@ -24505,13 +24489,21 @@ func goAfterAngelababy(money:Int, age:Int) throws {
 }
 ```</pre>
 </div>
-<div created="20190415021542219" creator="treeman" modified="20190415022004155" modifier="treeman" tags="Swift" title="Swift_willSet_didSet">
-<pre>Swift 擁有類似C# 的屬性聲明語法：
+<div created="20190415021542219" creator="treeman" modified="20190415022432138" modifier="treeman" tags="Swift" title="Swift_willSet_didSet">
+<pre>Swift 擁有類似C# 的getter,setter屬性聲明語法：
+
+可以只寫get 此時Property 為''read only''
 
 ```javascript
-var name : String {
-    get { return getName() }
-    set { setName(myName) }
+var num1: Int = 1
+var num2: Int = 2
+var sum: Int {
+    get {
+        return num1 + num2
+    }
+    set {
+        num2 = newValue - num1
+    }
 }
 ```
 但是，Swift還另有``willSet``和``didSet``行為。它們分別在調用setter``之前``和``之後``被調用。
