@@ -663,8 +663,6 @@ Error message and password prompt
 
 <li>Kotlin_Coding_Conventions</li>
 
-<li>Kotlin_extension</li>
-
 <li>Kotlin_Ktor</li>
 
 <li>Kotlin_when</li>
@@ -13629,7 +13627,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="Kotlin_extension Intellj Android_lifecycle Android_延伸閱讀 Android AndroidStudio IDE 關於我" title="$:/StoryList">
+<div list="Android_lifecycle Android_延伸閱讀 Android AndroidStudio IDE 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14679,12 +14677,9 @@ try {
                 ,new TypeToken&lt;ArrayList&lt;Transaction&gt;&gt;(){}.getType());
 ```</pre>
 </div>
-<div created="20190511014047650" creator="treeman" modified="20190511014350769" modifier="treeman" tags="Android" title="Android_lifecycle">
+<div created="20190511014047650" creator="treeman" modified="20190511014300955" modifier="treeman" tags="Android" title="Android_lifecycle">
 <pre>*Activity Lifecycle
 [img[img/2019/android_activity_lifecycle.jpg]]
-
-----
-
 *Fragment Lifecycle
 [img[img/2019/android_fragment_lifecycle.jpg]]</pre>
 </div>
@@ -17920,22 +17915,6 @@ var gender = if (name == &quot;Sam&quot;) &quot;male&quot; else &quot;female&quo
 </div>
 <div created="20190503132803588" creator="treeman" modified="20190503132846730" modifier="treeman" tags="Kotlin" title="Kotlin_Coding_Conventions">
 <pre>*https://kotlinlang.org/docs/reference/code-style-migration-guide.html#kotlin-coding-conventions-and-intellij-idea-formatter</pre>
-</div>
-<div created="20190511032249386" creator="treeman" modified="20190511032729140" modifier="treeman" tags="Kotlin" title="Kotlin_extension">
-<pre>*擴充Class方法
-```javascript
-//在class檔案最上層
-fun &lt;Class&gt;.&lt;Method&gt;(){
-...擴充程式碼
-}
-
-```
-*ex.擴充logd 方法
-```javascript
-fun Activity.logd(message: String){
-    Log.d(this::class.java.simpleName , message)
-}
-```</pre>
 </div>
 <div created="20190503131316556" creator="treeman" modified="20190503131514725" modifier="treeman" tags="Kotlin" title="Kotlin_Ktor">
 <pre>*Ktor 用 Kotlin 開發網頁
