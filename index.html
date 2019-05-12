@@ -1157,6 +1157,8 @@ Error message and password prompt
 
 <li>Swift_willSet_didSet</li>
 
+<li>Switch_toggle</li>
+
 <li>test</li>
 
 <li>TiddlyWiki</li>
@@ -13482,8 +13484,8 @@ Error message and password prompt
 <div created="20190410061259870" creator="treeman" modified="20190508055805056" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-資安相關-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330032209622" creator="treeman" modified="20190511071510405" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Android-209360082">
-<pre>open</pre>
+<div created="20190330032209622" creator="treeman" modified="20190512173114857" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Android-209360082">
+<pre>close</pre>
 </div>
 <div created="20190510144818514" creator="treeman" modified="20190510144818514" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-BetweenLanguage-209360082">
 <pre>open</pre>
@@ -13500,8 +13502,8 @@ Error message and password prompt
 <div created="20190330025412736" creator="treeman" modified="20190330025427325" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-English-209360082">
 <pre>close</pre>
 </div>
-<div created="20190330025425202" creator="treeman" modified="20190508055743610" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
-<pre>close</pre>
+<div created="20190330025425202" creator="treeman" modified="20190512183405793" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Git-209360082">
+<pre>open</pre>
 </div>
 <div created="20190330025422317" creator="treeman" modified="20190510164213951" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-IDE-209360082">
 <pre>open</pre>
@@ -13530,8 +13532,8 @@ Error message and password prompt
 <div created="20190330025429135" creator="treeman" modified="20190330025452301" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Other其他技術-209360082">
 <pre>close</pre>
 </div>
-<div created="20190410061427796" creator="treeman" modified="20190508020047989" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-PHP-209360082">
-<pre>close</pre>
+<div created="20190410061427796" creator="treeman" modified="20190512173118095" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-PHP-209360082">
+<pre>open</pre>
 </div>
 <div created="20190410061426610" creator="treeman" modified="20190510121324704" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Python-209360082">
 <pre>close</pre>
@@ -13650,7 +13652,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="Swift_lifecycle Kotlin_Interface Kotlin_Class_extends Android_lifecycle Android_Application NullSafety_Optional Kotlin_DSL Android_第三方函式庫 Android_延伸閱讀 Android AndroidStudio IDE 關於我" title="$:/StoryList">
+<div list="Git_常用指令 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -16506,7 +16508,7 @@ git add add.html
 git commit --amend --no-edit
 ```</pre>
 </div>
-<div created="20150509024419255" creator="treeman" modified="20190420055437285" modifier="treeman" tags="Git" title="Git_常用指令">
+<div created="20150509024419255" creator="treeman" modified="20190512183625311" modifier="treeman" tags="Git" title="Git_常用指令">
 <pre>*基礎設定
 ```
 查詢版本
@@ -16546,7 +16548,7 @@ git status
  
 顯示歷史紀錄
 git log
-git log —online //單航顯示模式
+git log —online --graph //單行顯示模式
 git log —stat     //顯示修改檔案
  
 將索引提交到數據庫
@@ -24472,7 +24474,7 @@ memory_limit=128M
 
 ```</pre>
 </div>
-<div created="20181206081116913" creator="treeman" modified="20190305063513738" modifier="treeman" tags="PHP" title="PHP_Composer">
+<div created="20181206081116913" creator="treeman" modified="20190512173613178" modifier="treeman" tags="PHP" title="PHP_Composer">
 <pre>*安裝composer
 ```
 php -r &quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot;
@@ -24487,7 +24489,35 @@ php -r &quot;unlink('composer-setup.php');&quot;
 *uninstall composer
 ```
 rm /usr/local/bin/composer
-```</pre>
+```
+----
+
+流程一：新專案流程 ( ``composer install`` )
+
+```
+建立 composer.json，並新增依賴到的擴充套件包； 
+執行 composer install，安裝擴充套件包並生成 composer.lock； 
+提交 composer.lock 到程式碼版本控制器中，如：git;
+```
+流程二：專案協作者安裝現有專案  ( ``composer install`` )
+
+```
+克隆專案後，根目錄下直接執行 
+composer install 
+從 composer.lock 中安裝 指定版本 的擴充套件包以及其依賴；
+
+此流程適用於生產環境程式碼的部署。
+```
+
+流程三：為專案新增新擴充套件包
+(``composer require vendor/package``)
+
+```
+使用 composer require vendor/package 新增擴充套件包； 
+
+提交更新後的 composer.json 和 composer.lock 到程式碼版本控制器中，如：git;*
+```
+&gt;https://www.itread01.com/content/1548404107.html</pre>
 </div>
 <div created="20151018053622102" creator="treeman" modified="20151128021424850" modifier="treeman" tags="PHP" title="PHP_constants">
 <pre>|{{{__LINE__}}}|The current line number of the file.|
@@ -25910,6 +25940,16 @@ Will set an new value 20 to age
 age filed changed form 0 to 20
 Full Name: Big Zhang San , Age: 20
 */
+```</pre>
+</div>
+<div created="20190512030211445" creator="treeman" modified="20190512030241861" modifier="treeman" tags="Swift" title="Switch_toggle">
+<pre>```javascript
+var power_on:Bool = true
+
+power_on.toggle()
+print(power_on)  //false
+power_on.toggle()
+print(power_on)  //true
 ```</pre>
 </div>
 <div created="20150929024456660" creator="treeman" modified="20150929025340324" modifier="treeman" title="test">
