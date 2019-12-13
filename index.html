@@ -1137,6 +1137,8 @@ Error message and password prompt
 
 <li>LINUX_如何使用awk分析多行資料</li>
 
+<li>LINUX_取得ip</li>
+
 <li>LINUX_金鑰交換</li>
 
 <li>LINUX_指令總覽</li>
@@ -14163,7 +14165,7 @@ Error message and password prompt
 <div created="20180714192602194" creator="treeman" modified="20180714192602194" modifier="treeman" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20180714192603913" creator="treeman" modified="20191122025803273" modifier="treeman" title="$:/state/sidebar">
+<div created="20180714192603913" creator="treeman" modified="20191213091348652" modifier="treeman" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20180714183634678" creator="treeman" modified="20180714183635241" modifier="treeman" title="$:/state/tab--1963855381">
@@ -14181,8 +14183,8 @@ Error message and password prompt
 <div created="20190704024350603" creator="treeman" modified="20190724212539583" modifier="treeman" title="$:/state/tab/moresidebar-401116514">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20180714183556373" creator="treeman" modified="20191122032915467" modifier="treeman" title="$:/state/tab/sidebar--1835078512">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20180714183556373" creator="treeman" modified="20191122033334721" modifier="treeman" title="$:/state/tab/sidebar--1835078512">
+<pre>Contents</pre>
 </div>
 <div created="20180725013514017" creator="treeman" modified="20180727013659583" modifier="treeman" title="$:/state/tab1-1455129693">
 <pre>OPENSTACK_OVERVIEW</pre>
@@ -14469,7 +14471,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="LINUX_date LINUX_parameter LINUX_switch_ LINUX_while LINUX_if_else LINUX_array 關於我" title="$:/StoryList">
+<div list="LINUX_取得ip 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20191031093450028" creator="treeman" modified="20191101015756888" modifier="treeman" tags="$:/tags/Stylesheet" title="$:/styles/tablecell" type="text/css">
@@ -15459,8 +15461,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20191001202923851" creator="treeman" modified="20191001202928120" modifier="treeman" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>markdown</pre>
 </div>
-<div created="20180801111636497" creator="treeman" modified="20191122020837066" modifier="treeman" title="$:/temp/search">
-<pre>SHELL</pre>
+<div created="20180801111636497" creator="treeman" modified="20191213091352367" modifier="treeman" title="$:/temp/search">
+<pre></pre>
 </div>
 <div created="20191001202921199" creator="treeman" modified="20191001202921199" modifier="treeman" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.17/index.html" url="https://tiddlywiki.com/library/v5.1.17/index.html">
 <pre>loaded</pre>
@@ -23460,6 +23462,16 @@ SS3,192.168.0.4,up
 
 </pre>
 </div>
+<div created="20191213091404591" creator="treeman" modified="20191213091621639" modifier="treeman" tags="LINUX_SHELL_TIP" title="LINUX_取得ip">
+<pre>*linux
+```bash
+ifconfig | grep Bcast | awk '/inet addr/{print substr($2,6)}'
+```
+*mac
+```bash
+ifconfig | awk '/broadcast/{print substr($2,0)}'
+```</pre>
+</div>
 <div created="20160901125921368" creator="treeman" modified="20180529023919217" modifier="treeman" tags="Linux" title="LINUX_金鑰交換">
 <pre>*相關檔案
 |~/.ssh/id_rsa|私鑰檔|
@@ -26813,14 +26825,37 @@ C-a ? -&gt; Help，顯示簡單說明
 C-a d -&gt; detach，將目前的 screen session (可能含有多個 windows)
 ```</pre>
 </div>
-<div created="20180526014853298" creator="treeman" modified="20180528151756858" modifier="treeman" title="LINUX_sed">
+<div created="20180526014853298" creator="treeman" modified="20191122034015460" modifier="treeman" title="LINUX_sed">
 <pre>*http://man.linuxde.net/sed
 ```
 sed [選項] 樣式 命令 [檔案]
 ```
+```
+選項
+-n  ：使用安靜(silent)模式。在一般 sed 的用法中，所有來自 STDIN 
+      的資料一般都會被列出到螢幕上。但如果加上 -n 參數後，則只有經過
+      sed 特殊處理的那一行(或者動作)才會被列出來。
+-e  ：直接在指令列模式上進行 sed 的動作編輯；
+-f  ：直接將 sed 的動作寫在一個檔案內， -f filename 則可以執行 filename 內的 
+      sed 動作；
+-r  ：sed 的動作支援的是延伸型正規表示法的語法。(預設是基礎正規表示法語法)
+-i  ：直接修改讀取的檔案內容，而不是由螢幕輸出。
+
+動作說明：  [n1[,n2]]function
+n1, n2 ：不見得會存在，一般代表『選擇進行動作的行數』，舉例來說，如果我的動作
+         是需要在 10 到 20 行之間進行的，則『 10,20[動作行為] 』
+
+function 有底下這些咚咚：
+a   ：新增， a 的後面可以接字串，而這些字串會在新的一行出現(目前的下一行)～
+c   ：取代， c 的後面可以接字串，這些字串可以取代 n1,n2 之間的行！
+d   ：刪除，因為是刪除啊，所以 d 後面通常不接任何咚咚；
+i   ：插入， i 的後面可以接字串，而這些字串會在新的一行出現(目前的上一行)；
+p   ：列印，亦即將某個選擇的資料印出。通常 p 會與參數 sed -n 一起運作～
+s   ：取代，可以直接進行取代的工作哩！通常這個 s 的動作可以搭配
+      正規表示法！例如 1,20s/old/new/g 就是啦！
+```
 |sed|[範圍]|d|刪除|
 |~|~|p|顯示|
-|~|~|-n|只顯示處理後的結果|
 *將含有【rc】字串資料刪除
 ```
 #nl /etc/inittab | sed '/rc/d' | less
@@ -26833,7 +26868,17 @@ sed [選項] 樣式 命令 [檔案]
 ```
 nl /etc/inittab | sed -n '/rc/s/wait/GO/gp | less'
 ```
-</pre>
+*印出 5-10 行
+```bash
+# -n 表示只顯示處理過的資料，因為我們只要印出 5-10 行，所以使用 -n 不要印出其他的資料。
+# p 表示顯示的意思
+sed –n “5,10p” 檔案名稱
+```
+*刪除文件的 3-6 行
+```
+# d 代表刪除
+sed -n “3,6d” 檔案名稱
+```</pre>
 </div>
 <div created="20161013140228733" creator="treeman" modified="20170612102653526" modifier="treeman" tags="Linux" title="LINUX_SELINUX">
 <pre>*取得selinux 狀態
