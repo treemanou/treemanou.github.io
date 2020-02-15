@@ -1533,6 +1533,8 @@ Error message and password prompt
 
 <li>PHP_MySQLiDB</li>
 
+<li>PHP_require_include</li>
+
 <li>PHP_short_open_tag</li>
 
 <li>PHP_timezone</li>
@@ -14197,8 +14199,8 @@ Error message and password prompt
 <div created="20180714192602194" creator="treeman" modified="20180714192602194" modifier="treeman" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20180714192603913" creator="treeman" modified="20200213022434201" modifier="treeman" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20180714192603913" creator="treeman" modified="20200215053001379" modifier="treeman" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20180714183634678" creator="treeman" modified="20180714183635241" modifier="treeman" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
@@ -14260,8 +14262,8 @@ Error message and password prompt
 <div created="20190410061259870" creator="treeman" modified="20200110160003594" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-資安相關-209360082">
 <pre>close</pre>
 </div>
-<div created="20190801041724326" creator="treeman" modified="20200213020627811" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-網站架設-209360082">
-<pre>open</pre>
+<div created="20190801041724326" creator="treeman" modified="20200215052008406" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-網站架設-209360082">
+<pre>close</pre>
 </div>
 <div created="20190330032209622" creator="treeman" modified="20191102032210679" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Android-209360082">
 <pre>close</pre>
@@ -14344,8 +14346,8 @@ Error message and password prompt
 <div created="20190411132643436" creator="treeman" modified="20191102034502788" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-Swift-209360082">
 <pre>open</pre>
 </div>
-<div created="20190330033506508" creator="treeman" modified="20200117162723418" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
-<pre>close</pre>
+<div created="20190330033506508" creator="treeman" modified="20200215052725829" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-TiddlyWiki-209360082">
+<pre>open</pre>
 </div>
 <div created="20190508015949930" creator="treeman" modified="20200110155944476" modifier="treeman" title="$:/state/toc/Contents/01_技術相關-VM-209360082">
 <pre>close</pre>
@@ -14509,7 +14511,7 @@ Error message and password prompt
 <div created="20150929021629073" creator="r" modified="20150929021632692" modifier="treema" title="$:/status/UserName">
 <pre>treeman</pre>
 </div>
-<div list="LINUX_vim PHP_檔案上傳 Apache_conf_中文 [[Draft of 'Apache_conf_Directory']] 關於我" title="$:/StoryList">
+<div list="PHP_require_include 關於我" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20191031093450028" creator="treeman" modified="20191101015756888" modifier="treeman" tags="$:/tags/Stylesheet" title="$:/styles/tablecell" type="text/css">
@@ -15499,8 +15501,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20191001202923851" creator="treeman" modified="20191001202928120" modifier="treeman" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>markdown</pre>
 </div>
-<div created="20180801111636497" creator="treeman" modified="20200213025045446" modifier="treeman" title="$:/temp/search">
-<pre>VIM</pre>
+<div created="20180801111636497" creator="treeman" modified="20200215052006227" modifier="treeman" title="$:/temp/search">
+<pre></pre>
 </div>
 <div created="20191001202921199" creator="treeman" modified="20191001202921199" modifier="treeman" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.17/index.html" url="https://tiddlywiki.com/library/v5.1.17/index.html">
 <pre>loaded</pre>
@@ -30709,6 +30711,34 @@ class CommmandOutputDocument implements Documentable
 </div>
 <div created="20200116011937216" creator="treeman" modified="20200116012030474" modifier="treeman" tags="PHP_Lib PHP" title="PHP_MySQLiDB">
 <pre>*https://github.com/ThingEngineer/PHP-MySQLi-Database-Class</pre>
+</div>
+<div created="20200215052020069" creator="treeman" modified="20200215053902444" modifier="treeman" tags="PHP" title="PHP_require_include">
+<pre>```php
+include('func.php');
+include 'func.php';
+
+require('lib.php');
+require('lib.php');
+
+include_once 'mydb.php';
+include_once('mydb.php');
+
+require_once 'copyright.php';
+require_once('copyright.php');
+```
+!!&lt;div style=&quot;border-bottom:2px solid #ccc;color:#841;font-weight:bold&quot;&gt;*require和include的不同&lt;/div&gt;
+*''require''
+&gt;*適合用來引入``靜態``的內容
+&gt;*如果include進來的檔案發生錯誤的話，會顯示``警告``，``不會立刻停止``
+*''include''
+&gt;*則適合用來引入``動態``的程式碼。
+ &gt;*而require 則是會顯示``錯誤``，``立刻終止程式``，不再往下執行。
+
+----
+*''require_once''和''include_once''
+&gt;使用方法跟require、include一樣，差別在於在引入檔案前
+&gt;會先''檢查檔案是否已經在其他地方被引入過了''，若有，就不會再重複引入。
+</pre>
 </div>
 <div created="20190801135822813" creator="treeman" modified="20190801140149569" modifier="treeman" tags="PHP" title="PHP_short_open_tag">
 <pre>*啟用php縮寫
