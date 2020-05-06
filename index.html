@@ -20902,7 +20902,7 @@ git clean -fX
 git add -f &lt;檔案名稱&gt;
 ```</pre>
 </div>
-<div created="20200309075938268" creator="treeman" modified="20200506090417925" modifier="treeman" tags="Git" title="Git_查詢" type="t">
+<div created="20200309075938268" creator="treeman" modified="20200506090816740" modifier="treeman" tags="Git" title="Git_查詢" type="t">
 <pre>*git log 查詢log
 ```
 #git log 
@@ -20939,6 +20939,16 @@ Date:   Wed Mar 4 10:17:06 2020 +0800
  index_files/index.html | 3610 ++++++++++++++++++++++++++++++++++++++++++++----
  2 files changed, 3566 insertions(+), 337 deletions(-)
 ```
+*git log ``hash`` 查詢某次commit 異動
+```
+#Git log e6620ba55d1a6dfd4bcb2b5c5c37f42092cae59b
+
+commit e6620ba55d1a6dfd4bcb2b5c5c37f42092cae59b
+Author: treeman &lt;treemanou@gmail.com&gt;
+Date:   Sat Feb 15 13:40:15 2020 +0800
+
+    add php require include
+```
 *git log ${filename} 查詢單一檔案 commit 紀錄
 ```
 $ git log welcome.html
@@ -20972,16 +20982,7 @@ hello, git
 +
 +Welcome to Git
 ```
-*git log ``hash``
-```
-#Git log e6620ba55d1a6dfd4bcb2b5c5c37f42092cae59b
 
-commit e6620ba55d1a6dfd4bcb2b5c5c37f42092cae59b
-Author: treeman &lt;treemanou@gmail.com&gt;
-Date:   Sat Feb 15 13:40:15 2020 +0800
-
-    add php require include
-```
 *參考:https://www.itread01.com/articles/1476835543.html</pre>
 </div>
 <div created="20190402061432185" creator="treeman" modified="20190402062219273" modifier="treeman" tags="Git" title="Git_追加檔案到最近一次的Commit" type="">
